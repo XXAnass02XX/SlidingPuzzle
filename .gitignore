@@ -1,0 +1,41 @@
+# Build output
+bin/
+obj/
+out/
+
+# .NET
+*.user
+*.suo
+project.lock.json
+*.nuget.props
+*.nuget.targets
+
+# Rider / JetBrains
+.idea/
+*.sln.iml
+*.DotSettings.user
+
+# VS Code
+.vs/
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+# Rider build / publish
+publish/
+*.publishsettings
+
+# Test results
+TestResults/
+[Tt]est[Rr]esult*/
+*.trx
+
+# Logs and temp
+*.log
+*.tmp
+
+# OS files
+.DS_Store
+Thumbs.db
