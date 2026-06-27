@@ -5,8 +5,17 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PuzzleGame.App"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-
-    </Grid>
+        Title="Sliding Puzzle" Height="500" Width="500"
+        WindowStartupLocation="CenterScreen">
+    <DockPanel Margin="20">
+        <TextBlock Name="WelcomeText" DockPanel.Dock="Top"
+                   FontSize="22" FontWeight="Bold"
+                   HorizontalAlignment="Center" Margin="0,10,0,24"/>
+        <Button Name="HintButton" DockPanel.Dock="Bottom"
+                Content="Hint" Width="120" Height="40" Margin="0,16,0,0"
+                HorizontalAlignment="Center" Click="HintClicked"/>
+        <UniformGrid Name="PuzzleGrid" Rows="3" Columns="3"
+                     Width="300" Height="300"
+                     HorizontalAlignment="Center" VerticalAlignment="Center"/>
+    </DockPanel>
 </Window>
