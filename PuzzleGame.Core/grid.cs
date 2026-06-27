@@ -49,14 +49,12 @@ public class grid
             if (isWithinBounds(elt[0], elt[1]) && _grid[elt[1]][elt[0]] == 0)
             {
                 weMovedATile = true;
-                zeroTile = elt;
+                var value = _grid[idxY][idxX];
+                _grid[idxY][idxX] = 0;
+                _grid[elt[1]][elt[0]] = value;
                 break;
             }
         }
-
-        var value = _grid[idxY][idxX];
-        _grid[idxY][idxX] = 0;
-        _grid[zeroTile[1]][zeroTile[0]] = value;
         return weMovedATile;
     }
     

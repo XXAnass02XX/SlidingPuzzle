@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System.IO;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
@@ -10,6 +11,8 @@ public partial class MainWindow : Window
 {
     private readonly grid _grid = new();
     private (int col, int row)? _hintCell;
+    private static readonly string LogPath =
+        @"C:\Users\anass\me\work\CS\SlidingPuzzle\puzzle_debug.log";
 
     public MainWindow(string playerName)
     {
@@ -75,7 +78,18 @@ public partial class MainWindow : Window
         _hintCell = null;
         var (col, row) = ((int, int))((Border)sender).Tag;
 
+        Log($"CLICK ({col},{row}) — before:{GridSnapshot()}");
+
         bool moved = _grid.moveTile(col, row);
+
+        string snapshot = GridSnapshot();
+        int zeroCount = snapshot.Count(ch => ch == '_');
+        string verdict = moved ? "moved OK" : "NO-OP (moveTile returned false)";
+        if (zeroCount != 1)
+            verdict += $"  *** CORRUPT: {zeroCount} blanks in grid ***";
+
+        Log($"{verdict} — after:{snapshot}");
+
         if (!moved) return;
 
         RenderGrid();
@@ -83,5 +97,28 @@ public partial class MainWindow : Window
         if (_grid.isWon())
             MessageBox.Show("Congratulations! You solved the puzzle!", "You won!",
                 MessageBoxButton.OK, MessageBoxImage.Information);
+    }
+
+    private string GridSnapshot()
+    {
+        var lines = new List<string>();
+        for (int r = 0; r < 3; r++)
+        {
+            var row = new List<string>();
+            for (int c = 0; c < 3; c++)
+            {
+                int v = _grid.GetValue(c, r);
+                row.Add(v == 0 ? " _" : $" {v}");
+            }
+            lines.Add($"  |{string.Join(" |", row)} |");
+        }
+        return Environment.NewLine + "  +----+----+----+" + Environment.NewLine
+             + string.Join(Environment.NewLine + "  +----+----+----+" + Environment.NewLine, lines)
+             + Environment.NewLine + "  +----+----+----+";
+    }
+
+    private static void Log(string message)
+    {
+        File.AppendAllText(LogPath, $"{DateTime.Now:HH:mm:ss.fff}  {message}{Environment.NewLine}");
     }
 }
