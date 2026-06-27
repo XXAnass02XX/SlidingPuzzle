@@ -9,7 +9,7 @@ public partial class NameWindow : Window
         InitializeComponent();
     }
 
-    private void StartButton_Click(object sender, RoutedEventArgs e)
+    private void PlaySlidingPuzzleButton_Click(object sender, RoutedEventArgs e)
     {
         string name = NameBox.Text.Trim();
         if (string.IsNullOrEmpty(name))
@@ -20,6 +20,20 @@ public partial class NameWindow : Window
         }
 
         new MainWindow(name).Show();
+        Close();
+    }
+
+    private void PlayReflexButton_Click(object sender, RoutedEventArgs e)
+    {
+        string name = NameBox.Text.Trim();
+        if (string.IsNullOrEmpty(name))
+        {
+            MessageBox.Show("Please enter your name.", "Name required",
+                MessageBoxButton.OK, MessageBoxImage.Warning);
+            return;
+        }
+
+        new ReflexWindow(name).Show();
         Close();
     }
 }

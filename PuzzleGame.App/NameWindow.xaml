@@ -9,10 +9,14 @@
     <StackPanel VerticalAlignment="Top" Margin="40,30,40,0">
         <TextBlock Text="Enter your name:" FontSize="16" Margin="0,0,0,8"/>
         <TextBox Name="NameBox" FontSize="16" Padding="6" Margin="0,0,0,16"/>
-        <Button Name="StartButton" Content="Start" FontSize="16"
+        <Button Name="PlaySlidingPuzzleButton" Content="Play Sliding Puzzle" FontSize="16"
                 Height="40" IsDefault="True"
-                Click="StartButton_Click"
-                MouseRightButtonUp="StartButton_Click"/>
-        <TextBlock Text="Puzzle Game" FontSize="22" Margin="0,80,0,8"/>
+                Click="PlaySlidingPuzzleButton_Click"
+                MouseRightButtonUp="PlaySlidingPuzzleButton_Click"/>
+        <Button Name="PlayReflexButton" Content="Play Reflex" FontSize="16"
+                Height="40" IsDefault="True"
+                Click="PlayReflexButton_Click"
+                MouseRightButtonUp="PlayReflexButton_Click"/>
+        <TextBlock Text="Puzzle Game" FontSize="22" Margin="0,30,0,8"/>
     </StackPanel>
 </Window>
